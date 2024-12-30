@@ -32,10 +32,10 @@
 
         .star {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            background: url('https://image.shutterstock.com/image-vector/cartoon-star-icon-vector-illustration-260nw-1707233274.jpg') no-repeat center center;
+            background-size: contain;
             animation: twinkling 5s infinite;
         }
 
@@ -45,15 +45,6 @@
             }
             50% {
                 opacity: 1;
-            }
-        }
-
-        @keyframes moveStars {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(-1000px);
             }
         }
 
@@ -209,8 +200,23 @@
         }
 
         .cell.open .cell-content {
-            color: #61dafb;
-            transform: scale(1.7);
+            color: #fff;
+            background: #ffeb3b;
+            border-radius: 15px;
+            padding: 10px;
+            transform: scale(1.1);
+            animation: openAnimation 0.3s forwards;
+        }
+
+        @keyframes openAnimation {
+            0% {
+                transform: scale(0.5);
+                background: #1e3c72;
+            }
+            100% {
+                transform: scale(1.1);
+                background: #ffeb3b;
+            }
         }
 
         .get-signal-button {
@@ -306,7 +312,6 @@
 
                 const cellContent = document.createElement('div');
                 cellContent.classList.add('cell-content');
-                cellContent.textContent = '⚫';
 
                 cell.appendChild(cellContent);
                 cells.push(cell);
@@ -317,7 +322,7 @@
         function resetGrid() {
             cells.forEach(cell => {
                 cell.classList.remove('open');
-                cell.querySelector('.cell-content').textContent = '⚫';
+                cell.querySelector('.cell-content').textContent = '';
             });
         }
 
